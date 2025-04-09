@@ -1,0 +1,14 @@
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: mariadb-taskmaster
+    environment:
+      MARIADB_ROOT_USER: root
+      MARIADB_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-data-taskmaster:/var/lib/mysql
+
+volumes:
+  mariadb-data-taskmaster:
