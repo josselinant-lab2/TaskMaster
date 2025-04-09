@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace TaskMasterTest
+namespace TaskMaster
 {
     public class Program
     {

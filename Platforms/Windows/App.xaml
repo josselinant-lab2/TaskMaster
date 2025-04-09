@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="TaskMasterTest.WinUI.App"
+    x:Class="TaskMaster.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:TaskMasterTest.WinUI">
+    xmlns:local="using:TaskMaster.WinUI">
 
 </maui:MauiWinUIApplication>

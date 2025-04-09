@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using TaskMaster.Data;
 
-
-namespace TaskMasterTest
+namespace TaskMaster
 {
   public static class MauiProgram
   {
@@ -27,7 +27,7 @@ namespace TaskMasterTest
       using (var scope = builder.Services.BuildServiceProvider().CreateScope())
       {
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        //db.Database.Migrate();
+        db.Database.Migrate();
       }
 
 #if DEBUG

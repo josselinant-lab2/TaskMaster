@@ -1,7 +1,8 @@
 ﻿using Android.App;
 using Android.Runtime;
+using TaskMaster;
 
-namespace TaskMasterTest
+namespace TaskMaster
 {
     [Application]
     public class MainApplication : MauiApplication

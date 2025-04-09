@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace TaskMasterTest
+namespace TaskMaster
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

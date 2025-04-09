@@ -1,4 +1,4 @@
-﻿namespace TaskMasterTest
+﻿namespace TaskMaster
 {
     public partial class MainPage : ContentPage
     {
