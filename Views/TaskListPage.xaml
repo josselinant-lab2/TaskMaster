@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TaskMaster.UI.ViewModels"
+             x:Class="TaskMaster.UI.Views.TaskListPage"
+             Title="Liste des T�ches">
+    <ContentPage.BindingContext>
+        <vm:TaskListViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Padding="20">
+        <CollectionView ItemsSource="{Binding Tasks}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BorderColor="Gray">
+                        <StackLayout>
+                            <Label Text="{Binding}" FontAttributes="Bold" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Ajouter une t�che" Command="{Binding AddTaskCommand}" />
+    </StackLayout>
+</ContentPage>

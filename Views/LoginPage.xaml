@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TaskMaster.UI.ViewModels"
+             x:Class="TaskMaster.UI.Views.LoginPage"
+             Title="Connexion">
+    <ContentPage.BindingContext>
+        <vm:LoginPageViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Padding="20" Spacing="15">
+        <Entry Placeholder="Email" Text="{Binding Email}" />
+        <Entry Placeholder="Mot de passe" Text="{Binding Password}" IsPassword="True" />
+        <Button Text="Se connecter" Command="{Binding LoginCommand}" />
+        <Label Text="Inscription"
+           HorizontalOptions="Center"
+           TextColor="Blue"
+           FontAttributes="Bold">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+</ContentPage>
