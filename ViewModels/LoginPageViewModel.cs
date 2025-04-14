@@ -23,5 +23,10 @@ namespace TaskMaster.UI.ViewModels
             {
             }
         }
+        [RelayCommand]
+        private async Task NavigateToRegisterAsync()
+        {
+            await Shell.Current.GoToAsync("///RegisterPage");
+        }
     }
 }

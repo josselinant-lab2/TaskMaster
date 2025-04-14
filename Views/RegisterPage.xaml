@@ -2,22 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TaskMaster.UI.ViewModels"
-             x:Class="TaskMaster.UI.Views.LoginPage"
-             Title="Connexion">
+             x:Class="TaskMaster.UI.Views.RegisterPage"
+             Title="Inscription">
     <ContentPage.BindingContext>
-        <vm:LoginPageViewModel />
+        <vm:RegisterPageViewModel />
     </ContentPage.BindingContext>
     <StackLayout Padding="20" Spacing="15">
+        <Entry Placeholder="Pseudo" Text="{Binding Pseudo}" />
         <Entry Placeholder="Email" Text="{Binding Email}" />
         <Entry Placeholder="Mot de passe" Text="{Binding Password}" IsPassword="True" />
-        <Button Text="Se connecter" Command="{Binding LoginCommand}" />
-        <Label Text="Inscription"
-           HorizontalOptions="Center"
-           TextColor="Blue"
-           FontAttributes="Bold">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}" />
-            </Label.GestureRecognizers>
-        </Label>
+        <Entry Placeholder="Confirmer le mot de passe" Text="{Binding ConfirmPassword}" IsPassword="True" />
+        <Button Text="Creer compte" Command="{Binding CreateAccountCommand}" />
     </StackLayout>
 </ContentPage>
