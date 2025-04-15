@@ -30,5 +30,17 @@ namespace TaskMaster.Services
         {
             return await _dbContext.Users.AnyAsync(u => u.Email == email);
         }
+
+        public async Task<User> AuthenticateUserAsync(string email, string plainPassword)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+            {
+                return null; 
+            }
+
+            bool isValid = PasswordHelper.VerifyPassword(user.Password, plainPassword);
+            return isValid ? user : null;
+        }
     }
 }

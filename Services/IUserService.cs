@@ -12,8 +12,14 @@ namespace TaskMaster.Services
         Task<bool> RegisterUserAsync(User user, string plainPassword);
 
         /// <summary>
-        /// Vérifie si l'adresse e-mail est déjà utilisée.
+        /// Vérifie si l'email est déjà utilisé.
         /// </summary>
         Task<bool> IsEmailUsedAsync(string email);
+
+        /// <summary>
+        /// Authentifie un utilisateur à partir de son email et mot de passe en clair.
+        /// Retourne l'utilisateur si l'authentification réussit, sinon null.
+        /// </summary>
+        Task<User> AuthenticateUserAsync(string email, string plainPassword);
     }
 }

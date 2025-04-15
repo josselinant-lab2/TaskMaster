@@ -1,16 +1,20 @@
-﻿namespace TaskMaster;
+﻿using Microsoft.Maui.Controls;
+using System;
 
-public partial class App : Application
+namespace TaskMaster
 {
-    public App()
+    public partial class App : Application
     {
-        InitializeComponent();
+        public new static App Current => (App)Application.Current;
 
-        //MainPage = new AppShell();
-    }
+        public IServiceProvider Services { get; }
 
-    protected override Window CreateWindow(IActivationState? activationState)
-    {
-        return new Window(new AppShell());
+        public App(IServiceProvider services)
+        {
+            InitializeComponent();
+            Services = services;
+
+            MainPage = new AppShell();
+        }
     }
 }

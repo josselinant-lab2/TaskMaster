@@ -1,32 +1,58 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Threading.Tasks;
+using SystemTask = System.Threading.Tasks.Task;
+using TaskMaster.Services;
 
 namespace TaskMaster.UI.ViewModels
 {
     public partial class LoginPageViewModel : ObservableObject
     {
+        private readonly IUserService _userService;
+
+        // Injection via le constructeur
+        public LoginPageViewModel(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [ObservableProperty]
         private string email = string.Empty;
 
         [ObservableProperty]
         private string password = string.Empty;
 
+        [ObservableProperty]
+        private string errorMessage = string.Empty;
+
         [RelayCommand]
-        private async Task LoginAsync()
+        private async SystemTask LoginAsync()
         {
-            if (!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password))
+
+            ErrorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {
-                await Shell.Current.GoToAsync("TaskListPage");
+                ErrorMessage = "Veuillez saisir l'email et le mot de passe.";
+                return;
             }
-            else
+
+            var user = await _userService.AuthenticateUserAsync(Email, Password);
+            if (user == null)
             {
+                ErrorMessage = "Email ou mot de passe invalide.";
+                return;
             }
+
+            Services.SessionService.CurrentUser = user;
+            await Shell.Current.GoToAsync("///TaskListPage");
+            return;
         }
+
         [RelayCommand]
-        private async Task NavigateToRegisterAsync()
+        private async SystemTask NavigateToRegisterAsync()
         {
             await Shell.Current.GoToAsync("///RegisterPage");
+            return;
         }
     }
 }
