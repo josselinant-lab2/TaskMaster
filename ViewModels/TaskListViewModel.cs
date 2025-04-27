@@ -48,8 +48,9 @@ namespace TaskMaster.UI.ViewModels
         [RelayCommand]
         private async System.Threading.Tasks.Task AddTaskAsync()
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Shell.Current.GoToAsync("///CreateTaskPage");
         }
+
 
     }
 }

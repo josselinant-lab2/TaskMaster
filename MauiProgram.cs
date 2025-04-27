@@ -32,7 +32,11 @@ public static class MauiProgram
         builder.Services.AddTransient<RegisterPageViewModel>();
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<TaskListPage>();
-        builder.Services.AddTransient<ITaskService, TaskService>(); 
+        builder.Services.AddTransient<ITaskService, TaskService>();
+        builder.Services.AddTransient<ITaskService, TaskService>();
+        builder.Services.AddTransient<IReferenceDataService, ReferenceDataService>();
+        builder.Services.AddTransient<CreateTaskViewModel>();
+        builder.Services.AddTransient<CreateTaskPage>();
 
         using (var scope = builder.Services.BuildServiceProvider().CreateScope())
         {
