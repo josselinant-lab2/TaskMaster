@@ -2,30 +2,55 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using TaskMaster.Models;
+using TaskMaster.Services;
 
 namespace TaskMaster.UI.ViewModels
 {
+    using TaskModel = TaskMaster.Models.Task;
+
     public partial class TaskListViewModel : ObservableObject
     {
-        public ObservableCollection<string> Tasks { get; } = new ObservableCollection<string>();
+        private readonly ITaskService _taskService;
 
-        public TaskListViewModel()
+        public ObservableCollection<TaskModel> Tasks { get; } = new ObservableCollection<TaskModel>();
+
+        public IAsyncRelayCommand LoadTasksCommand { get; }
+
+        public TaskListViewModel(ITaskService taskService)
         {
-            LoadTasks();
+            _taskService = taskService;
+            LoadTasksCommand = new AsyncRelayCommand(LoadTasksAsync);
         }
 
-        private void LoadTasks()
+        /// <summary>
+        /// Charge les tâches associées à l'utilisateur connecté.
+        /// </summary>
+        private async System.Threading.Tasks.Task LoadTasksAsync()
         {
-            Tasks.Add("Tâche 1 - Réunion d'équipe");
-            Tasks.Add("Tâche 2 - Rapport mensuel");
-            Tasks.Add("Tâche 3 - Vérifier les emails");
+            var currentUser = SessionService.CurrentUser;
+            if (currentUser == null)
+            {
+
+                Tasks.Clear();
+                return;
+            }
+
+            var tasksFromDb = await _taskService.GetTasksForUserAsync(currentUser.Id_User);
+
+            Tasks.Clear();
+            foreach (var task in tasksFromDb)
+            {
+                Tasks.Add(task);
+            }
         }
 
         [RelayCommand]
-        private async Task AddTaskAsync()
+        private async System.Threading.Tasks.Task AddTaskAsync()
         {
-            Tasks.Add("Nouvelle tâche ajoutée");
-            await Task.CompletedTask;
+            await Shell.Current.GoToAsync("///CreateTaskPage");
         }
+
+
     }
 }

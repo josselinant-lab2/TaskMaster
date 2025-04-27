@@ -3,9 +3,9 @@ using TaskMaster.UI.ViewModels;
 
 namespace TaskMaster.UI.Views
 {
-    public partial class RegisterPage : ContentPage
+    public partial class CreateTaskPage : ContentPage
     {
-        public RegisterPage(RegisterPageViewModel viewModel)
+        public CreateTaskPage(CreateTaskViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;
